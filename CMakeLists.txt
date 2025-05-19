@@ -8,6 +8,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # Add include directory
 include_directories(include)
+include_directories("/opt/homebrew/opt/eigen/include/eigen3")
 
 # Add subdirectories
 add_subdirectory(src)

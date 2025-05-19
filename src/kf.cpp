@@ -1,72 +1,70 @@
 #include <iostream>
-#include <string>
 #include <Eigen/Dense> // dynamic size matrices and good performance
+#include "kalman_filter/kf.h" // include the header file where KalmanFilter is defined
 
-using namespace std;
 using namespace Eigen;
+using namespace std;
 
-class KalmanFilter {
+KalmanFilter::KalmanFilter(double dt, double var_x, double var_v, double cov_xv, Vector2d& u) 
+    : dt(dt), var_x(var_x), var_v(var_v), cov_xv(cov_xv), u(u) {
+    
+    // Initialize state vector
+    x << 0, 0; // zero position, zero velocity
+    
+    // Initialize system matrices
+    A << 1, dt,
+         0, 1;
+    
+    B << dt*dt/2, 0,
+         0, dt;
+    
+    H << 1, 0,
+         0, 1;
+    
+    // Initialize covariance matrices
+    P << var_x, cov_xv,
+         cov_xv, var_v;
+    
+    // Process noise covariance matrix
+    Q << 0, 0,
+        0, 0;
+    
+    // Measurement noise covariance matrix
+    R << 0.1, 0,
+        0, 0.1;
+    
+    // identity matrix
+    I << Matrix2d::Identity();
+}
 
-    public:
-        // declarations
-        double dt, var_x, var_v, cov_xv; // time step, variance of x, variance of v, covariance of x and v 
-        Vector2d x; // state vector
-        Vector2d u; // control vector
-        Matrix2d A; // state transition matrix
-        Matrix2d B; // control matrix
-        Matrix2d P; // state covariance matrix
-        Matrix2d Q; // process noise covariance matrix
-        Matrix2d R; // measurement noise covariance matrix
-        Matrix2d H; // measurement matrix
-        Matrix2d I; // identity matrix
-        
-        
-        KalmanFilter(
-            double dt,
+// predictions method
+Vector2d KalmanFilter::predict() {
+    
+    // Predict the state
+    x = A * x + B * u;
+    
+    // Predict the covariance
+    P = A * P * A.transpose() + Q;
+    
+    return x;
+}
 
-        )
+// calculate Kalman gain
+Matrix2d KalmanFilter::kalmanGain() {
+    Matrix2d K = P * H.transpose() * (H * P * H.transpose() + R).inverse();
+    
+    return K;
+}
 
-        // methods
-
-        void predictions() {
-            cout << "State to be predicted is " << x << endl;
-        }
-
-        void updates() {
-            cout << "State to be updated is " << x << endl;
-        }
-
-        private:
-            // time step counter
-            int k; 
-
-            // define matrices that can be dynamically sized
-            MatrixXd A, B, Q, R, H, I;
-
-            // initial state covariance matrix
-            MatrixXd P0;
-
-            // initial state vector, dynamically sized
-            VectorXd x0;
-
-            // control vector, dynamically sized
-            VectorXd u;
-
-            // matrix of states to store the predicted state at each timestep
-            MatrixXd predictedx;
-
-            // matrix of matrices to store the predicted state at each timestep
-            MatrixXd predictedP;
-
-            // matrix of states to store the updated state at each timestep
-            MatrixXd updatedx;
-
-            // matrix of matrices to store the updated state at each timestep
-            MatrixXd updatedP;
-
-            // matrix of states to store the kalman gain at each timestep
-            MatrixXd KalmanMatrixes;
-
-            // matrix to store error in prediction at each timestep
-            MatrixXd errors;
-};
+// update method
+Vector2d KalmanFilter::update(const Vector2d& z) {
+    // extract the Kalman gain matrix
+    Matrix2d K = kalmanGain();
+    
+    // update the state with the measurement
+    x = x + K * (z - H * x);
+    
+    // update the covariance
+    P = (I - K * H) * P;
+    return x;
+}

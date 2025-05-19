@@ -14,7 +14,9 @@ class KalmanFilter {
         // predict, Kalman gain and update methods
         Vector2d predict();
         Matrix2d kalmanGain();
-        Vector2d update();
+
+        // update method gets the measurement vector z passed to it
+        Vector2d update(const Vector2d& z);
 
     private:
         // member variables of the class
@@ -35,4 +37,4 @@ class KalmanFilter {
         // identity matrix
         Matrix2d I;
 
-    }
+};

@@ -168,6 +168,30 @@ example.cpp.s:
 	cd /Users/mikeshubrook/Desktop/KalmanFilter/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/kalman_filter.dir/build.make src/CMakeFiles/kalman_filter.dir/example.cpp.s
 .PHONY : example.cpp.s
 
+kf.o: kf.cpp.o
+.PHONY : kf.o
+
+# target to build an object file
+kf.cpp.o:
+	cd /Users/mikeshubrook/Desktop/KalmanFilter/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/kalman_filter.dir/build.make src/CMakeFiles/kalman_filter.dir/kf.cpp.o
+.PHONY : kf.cpp.o
+
+kf.i: kf.cpp.i
+.PHONY : kf.i
+
+# target to preprocess a source file
+kf.cpp.i:
+	cd /Users/mikeshubrook/Desktop/KalmanFilter/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/kalman_filter.dir/build.make src/CMakeFiles/kalman_filter.dir/kf.cpp.i
+.PHONY : kf.cpp.i
+
+kf.s: kf.cpp.s
+.PHONY : kf.s
+
+# target to generate assembly for a file
+kf.cpp.s:
+	cd /Users/mikeshubrook/Desktop/KalmanFilter/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/kalman_filter.dir/build.make src/CMakeFiles/kalman_filter.dir/kf.cpp.s
+.PHONY : kf.cpp.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -205,6 +229,9 @@ help:
 	@echo "... example.o"
 	@echo "... example.i"
 	@echo "... example.s"
+	@echo "... kf.o"
+	@echo "... kf.i"
+	@echo "... kf.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

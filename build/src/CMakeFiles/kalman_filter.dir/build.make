@@ -86,17 +86,33 @@ src/CMakeFiles/kalman_filter.dir/example.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kalman_filter.dir/example.cpp.s"
 	cd /Users/mikeshubrook/Desktop/KalmanFilter/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mikeshubrook/Desktop/KalmanFilter/src/example.cpp -o CMakeFiles/kalman_filter.dir/example.cpp.s
 
+src/CMakeFiles/kalman_filter.dir/kf.cpp.o: src/CMakeFiles/kalman_filter.dir/flags.make
+src/CMakeFiles/kalman_filter.dir/kf.cpp.o: /Users/mikeshubrook/Desktop/KalmanFilter/src/kf.cpp
+src/CMakeFiles/kalman_filter.dir/kf.cpp.o: src/CMakeFiles/kalman_filter.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/mikeshubrook/Desktop/KalmanFilter/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/kalman_filter.dir/kf.cpp.o"
+	cd /Users/mikeshubrook/Desktop/KalmanFilter/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/kalman_filter.dir/kf.cpp.o -MF CMakeFiles/kalman_filter.dir/kf.cpp.o.d -o CMakeFiles/kalman_filter.dir/kf.cpp.o -c /Users/mikeshubrook/Desktop/KalmanFilter/src/kf.cpp
+
+src/CMakeFiles/kalman_filter.dir/kf.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/kalman_filter.dir/kf.cpp.i"
+	cd /Users/mikeshubrook/Desktop/KalmanFilter/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/mikeshubrook/Desktop/KalmanFilter/src/kf.cpp > CMakeFiles/kalman_filter.dir/kf.cpp.i
+
+src/CMakeFiles/kalman_filter.dir/kf.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/kalman_filter.dir/kf.cpp.s"
+	cd /Users/mikeshubrook/Desktop/KalmanFilter/build/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/mikeshubrook/Desktop/KalmanFilter/src/kf.cpp -o CMakeFiles/kalman_filter.dir/kf.cpp.s
+
 # Object files for target kalman_filter
 kalman_filter_OBJECTS = \
-"CMakeFiles/kalman_filter.dir/example.cpp.o"
+"CMakeFiles/kalman_filter.dir/example.cpp.o" \
+"CMakeFiles/kalman_filter.dir/kf.cpp.o"
 
 # External object files for target kalman_filter
 kalman_filter_EXTERNAL_OBJECTS =
 
 src/libkalman_filter.a: src/CMakeFiles/kalman_filter.dir/example.cpp.o
+src/libkalman_filter.a: src/CMakeFiles/kalman_filter.dir/kf.cpp.o
 src/libkalman_filter.a: src/CMakeFiles/kalman_filter.dir/build.make
 src/libkalman_filter.a: src/CMakeFiles/kalman_filter.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/mikeshubrook/Desktop/KalmanFilter/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libkalman_filter.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/mikeshubrook/Desktop/KalmanFilter/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libkalman_filter.a"
 	cd /Users/mikeshubrook/Desktop/KalmanFilter/build/src && $(CMAKE_COMMAND) -P CMakeFiles/kalman_filter.dir/cmake_clean_target.cmake
 	cd /Users/mikeshubrook/Desktop/KalmanFilter/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/kalman_filter.dir/link.txt --verbose=$(VERBOSE)
 
