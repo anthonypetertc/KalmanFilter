@@ -19,7 +19,7 @@ FetchContent_MakeAvailable(Eigen)
 include_directories(include)
 
 
-# Export compile commands
+# --- Export compile commands ---
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # --- Subdirectories ---
