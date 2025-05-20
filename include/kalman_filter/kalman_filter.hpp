@@ -30,10 +30,34 @@ class KalmanFilter {
         VectorXd predict(); //TODO: what does this do?
 
         // update the object with a new measurement.
-        void update(KalmanStep);
+        void update(
+            KalmanStep KS,
+            MatrixXd& H, 
+            MatrixXd& L);
 
+    private:
+        //private method to obtain P_n|n-1.
+        void initial_update_covariance(
+            KalmanStep KS,
+            MatrixXd& L
+        );
 
+        //private method to obtain alpha_n|n-1
+        //TODO: Best way to incorporate the dynamics?
+        void initial_update_estimate(KalmanStep KS);
 
+        //private method to compute Kalman Gain.
+        void compute_kalman_gain(
+            KalmanStep KS,
+            MatrixXd H
+        );
+
+        //private method to to obtain P_n|n.
+        void update_covariance(MatrixXd H);
+
+        //private method to compute estimate
+        //TODO: Best way to incorporate the dynamics?
+        void update_estimate(KalmanStep KS);
 };
 
 /*
