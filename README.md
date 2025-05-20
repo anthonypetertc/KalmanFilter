@@ -23,4 +23,3 @@ To run the unit tests:
 cd tests
 ctest
 ```
-
