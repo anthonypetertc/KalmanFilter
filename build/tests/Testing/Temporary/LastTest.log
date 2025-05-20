@@ -1,0 +1,22 @@
+Start testing: May 20 09:53 BST
+----------------------------------------------------------
+1/1 Testing: MyUnitTests
+1/1 Test: MyUnitTests
+Command: "/home/tony/MEGA/git/KalmanFilter/build/bin/unit_tests"
+Directory: /home/tony/MEGA/git/KalmanFilter/build/tests
+"MyUnitTests" start time: May 20 09:53 BST
+Output:
+----------------------------------------------------------
+Running 1 test case...
+
+[1;32;49m*** No errors detected
+[0;39;49m
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"MyUnitTests" end time: May 20 09:53 BST
+"MyUnitTests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 20 09:53 BST

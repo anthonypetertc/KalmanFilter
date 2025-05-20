@@ -1,0 +1,9 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/tony/MEGA/git/KalmanFilter/build/cmake_install.cmake",
+		"/home/tony/MEGA/git/KalmanFilter/build/src/cmake_install.cmake",
+		"/home/tony/MEGA/git/KalmanFilter/build/tests/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
