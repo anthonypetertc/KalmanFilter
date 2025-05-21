@@ -36,3 +36,6 @@ local/
 
 #build files
 build/
+
+#vs code
+.vscode
