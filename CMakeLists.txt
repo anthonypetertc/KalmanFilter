@@ -10,13 +10,17 @@ include(FetchContent)
 FetchContent_Declare(
   Eigen
   GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
-  GIT_TAG 3.4.0  
+  GIT_TAG 3.4.0
 )
 
 FetchContent_MakeAvailable(Eigen)
 
 # --- Include directories ---
 include_directories(include)
+
+
+# --- Export compile commands ---
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # --- Subdirectories ---
 add_subdirectory(src)

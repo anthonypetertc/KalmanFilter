@@ -68,7 +68,7 @@ $$
 In the above we have introduced the following matrices, which are related to the dynamics of the system:
 
 $$
-(L_{n-1})_{ij} = \frac{\partial g_i}{\partial \alpha_j}\bigg|_{\alpha = \alpha_{n-1|n-1}} 
+(L_{n-1})_{ij} = \frac{\partial g_i}{\partial \alpha_j}\bigg|_{\alpha = \alpha_{n-1|n-1}}
 $$
 
 $$
