@@ -31,7 +31,7 @@ KalmanFilter::KalmanFilter(double dt, double x0, double v0, double var_x, double
     
     // Measurement noise covariance matrix
     R << 0.1, 0,
-        0, 0.1;
+         0, 0.1;
     
     // identity matrix
     I << Matrix2d::Identity();

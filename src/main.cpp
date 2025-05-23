@@ -20,10 +20,10 @@ int main() {
 
     // Initialize physical parameters
     double dt = 0.1; // time step
-    double a = -0.981; // control vector (1D acceleration)
-    double x0 = 0.0; // initial position
-    double v0 = 50.0; // initial velocity
-    double t_final = 25.0; // final time
+    double a = -9.81; // control vector (1D acceleration)
+    double x0 = 10.0; // initial position
+    double v0 = 25.0; // initial velocity
+    double t_final = 7.5; // final time
 
     // print the physical parameters
     std::cout << "dt = " << dt <<  std::endl;
