@@ -1,6 +1,6 @@
 #include <iostream>
 #include <Eigen/Dense> // dynamic size matrices and good performance
-#include "kalman_filter/kf.h" // include the header file where KalmanFilter is defined
+#include "kalman_filter/kf1D.h" // include the header file where KalmanFilter is defined
 
 using namespace Eigen;
 using namespace std;

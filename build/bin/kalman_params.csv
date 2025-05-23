@@ -1,9 +1,0 @@
-name,value
-dt,0.1
-t_final,7.5
-a,-9.81
-x0,10
-v0,25
-var_x,0.01
-var_v,0.01
-cov_xv,0.01

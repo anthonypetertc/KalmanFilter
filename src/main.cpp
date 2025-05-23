@@ -6,7 +6,7 @@
 
 
 #include "kalman_filter/example.h"
-#include "kalman_filter/kf.h" // include the header file where KalmanFilter is defined
+#include "kalman_filter/kf1D.h" // include the header file where KalmanFilter is defined
 
 using namespace std;
 using namespace Eigen;
