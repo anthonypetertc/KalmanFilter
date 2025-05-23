@@ -1735,3 +1735,41 @@ events:
         
       exitCode: 0
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "/usr/share/cmake-3.28/Modules/CheckCXXCompilerFlag.cmake:34 (cmake_check_compiler_flag)"
+      - "build/_deps/eigen-src/CMakeLists.txt:71 (check_cxx_compiler_flag)"
+      - "build/_deps/eigen-src/CMakeLists.txt:88 (ei_add_cxx_compiler_flag)"
+    checks:
+      - "Performing Test COMPILER_SUPPORT_std=cpp03"
+    directories:
+      source: "/home/tony/MEGA/git/KalmanFilter/build/CMakeFiles/CMakeScratch/TryCompile-TYRYlt"
+      binary: "/home/tony/MEGA/git/KalmanFilter/build/CMakeFiles/CMakeScratch/TryCompile-TYRYlt"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: "/home/tony/MEGA/git/KalmanFilter/build/_deps/eigen-src/cmake"
+    buildResult:
+      variable: "COMPILER_SUPPORT_std=cpp03"
+      cached: true
+      stdout: |
+        Change Dir: '/home/tony/MEGA/git/KalmanFilter/build/CMakeFiles/CMakeScratch/TryCompile-TYRYlt'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a01a4/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_a01a4.dir/build.make CMakeFiles/cmTC_a01a4.dir/build
+        gmake[1]: Entering directory '/home/tony/MEGA/git/KalmanFilter/build/CMakeFiles/CMakeScratch/TryCompile-TYRYlt'
+        Building CXX object CMakeFiles/cmTC_a01a4.dir/src.cxx.o
+        /usr/bin/c++ -DCOMPILER_SUPPORT_std=cpp03  -std=c++03 -o CMakeFiles/cmTC_a01a4.dir/src.cxx.o -c /home/tony/MEGA/git/KalmanFilter/build/CMakeFiles/CMakeScratch/TryCompile-TYRYlt/src.cxx
+        Linking CXX executable cmTC_a01a4
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a01a4.dir/link.txt --verbose=1
+        /usr/bin/c++ CMakeFiles/cmTC_a01a4.dir/src.cxx.o -o cmTC_a01a4 
+        gmake[1]: Leaving directory '/home/tony/MEGA/git/KalmanFilter/build/CMakeFiles/CMakeScratch/TryCompile-TYRYlt'
+        
+      exitCode: 0
+...
