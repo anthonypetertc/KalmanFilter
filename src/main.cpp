@@ -4,6 +4,7 @@
 #include <random>   // for random number generation
 #include <Eigen/Dense> // for matrix and vector operations
 
+
 #include "kalman_filter/example.h"
 #include "kalman_filter/kf.h" // include the header file where KalmanFilter is defined
 
@@ -19,10 +20,10 @@ int main() {
 
     // Initialize physical parameters
     double dt = 0.1; // time step
-    double a = -9.81; // control vector (1D acceleration)
-    double v_i = 50.0; // initial velocity
+    double a = -0.981; // control vector (1D acceleration)
+    double v_i = 10.0; // initial velocity
 
-    double t_final = 10.0; // final time
+    double t_final = 15.0; // final time
 
     // print the physical parameters
     std::cout << "dt = " << dt <<  std::endl;
@@ -44,9 +45,9 @@ int main() {
         true_x.push_back(v_i * t + 0.5 * a * t * t);
     }
     // Initialize Kalman Filter parameters
-    double var_x = 0.01; // variance of position
-    double var_v = 0.01; // variance of velocity
-    double cov_xv = 0.01; // covariance between position and velocity
+    double var_x = 0.1; // variance of position
+    double var_v = 0.1; // variance of velocity
+    double cov_xv = 0.1; // covariance between position and velocity
 
     // print the Kalman Filter parameters
     std::cout << "var_x = " << var_x <<  std::endl;
@@ -89,6 +90,24 @@ int main() {
         updates.push_back(x_update(0)); // store the updated position (0th element of state vector)
     }
 
+    // Save the input parameters to a CSV file to be used in the Python script for comparisons
+    std::ofstream param_file("kalman_params.csv");
+    if (param_file.is_open()) {
+        param_file << "name,value\n";
+        param_file << "dt," << dt << "\n";
+        param_file << "t_final," << t_final << "\n";
+        param_file << "a," << a << "\n";
+        param_file << "v_i," << v_i << "\n";
+        param_file << "var_x," << var_x << "\n";
+        param_file << "var_v," << var_v << "\n";
+        param_file << "cov_xv," << cov_xv << "\n";
+        param_file.close();
+        std::cout << "Parameters saved to kalman_params.csv" << std::endl;
+    } else {
+        std::cerr << "Failed to open parameter file for writing." << std::endl;
+    }
+
+    // Save the Kalman Filter output to CSV for comparison with a Python implementation
     std::ofstream file("kalman_output.csv");
     if (file.is_open()) {
         file << "time,true,measurement,prediction,update\n";  // header
@@ -106,6 +125,7 @@ int main() {
     } else {
         std::cerr << "Failed to open file for writing." << std::endl;
     }
+
 
 
 }

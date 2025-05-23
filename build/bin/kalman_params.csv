@@ -1,0 +1,8 @@
+name,value
+dt,0.1
+t_final,15
+a,-0.981
+v_i,10
+var_x,0.1
+var_v,0.1
+cov_xv,0.1
