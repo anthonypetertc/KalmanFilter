@@ -21,14 +21,15 @@ int main() {
     // Initialize physical parameters
     double dt = 0.1; // time step
     double a = -0.981; // control vector (1D acceleration)
-    double v_i = 10.0; // initial velocity
-
-    double t_final = 15.0; // final time
+    double x0 = 0.0; // initial position
+    double v0 = 50.0; // initial velocity
+    double t_final = 25.0; // final time
 
     // print the physical parameters
     std::cout << "dt = " << dt <<  std::endl;
     std::cout << "a = " << a <<  std::endl;
-    std::cout << "v_i = " << v_i <<  std::endl;
+    std::cout << "x0 = " << x0 <<  std::endl;
+    std::cout << "v0 = " << v0 <<  std::endl;
 
     // create a list of times
     vector<double> times;
@@ -42,12 +43,12 @@ int main() {
     // create list of trajector truth values
     vector<double> true_x;
     for (double t: times) {
-        true_x.push_back(v_i * t + 0.5 * a * t * t);
+        true_x.push_back(x0 + v0 * t + 0.5 * a * t * t);
     }
     // Initialize Kalman Filter parameters
-    double var_x = 0.1; // variance of position
-    double var_v = 0.1; // variance of velocity
-    double cov_xv = 0.1; // covariance between position and velocity
+    double var_x = 0.01; // variance of position
+    double var_v = 0.01; // variance of velocity
+    double cov_xv = 0.01; // covariance between position and velocity
 
     // print the Kalman Filter parameters
     std::cout << "var_x = " << var_x <<  std::endl;
@@ -59,7 +60,7 @@ int main() {
     u << 0, a; // acceleration on velocity component only
 
     // Instantiate the Kalman Filter
-    KalmanFilter kalman(dt, var_x, var_v, cov_xv, u);
+    KalmanFilter kalman(dt, x0, v0, var_x, var_v, cov_xv, u);
 
     // empty lists to store measurements, estimates and updates
     vector<double> measurements;
@@ -68,7 +69,7 @@ int main() {
 
     // random number for noise on measurements
     default_random_engine generator;
-    normal_distribution<double> noise(0.0, 5); // mean 0, stddev 0.1
+    normal_distribution<double> noise(0.0, 3.33); // noise(mean, stddev)
 
     // loop through true values of trajectory, apply noise to create measurements, 
     // then call the kalman filter
@@ -97,7 +98,8 @@ int main() {
         param_file << "dt," << dt << "\n";
         param_file << "t_final," << t_final << "\n";
         param_file << "a," << a << "\n";
-        param_file << "v_i," << v_i << "\n";
+        param_file << "x0," << x0 << "\n";
+        param_file << "v0," << v0 << "\n";
         param_file << "var_x," << var_x << "\n";
         param_file << "var_v," << var_v << "\n";
         param_file << "cov_xv," << cov_xv << "\n";

@@ -5,11 +5,11 @@
 using namespace Eigen;
 using namespace std;
 
-KalmanFilter::KalmanFilter(double dt, double var_x, double var_v, double cov_xv, Vector2d& u) 
-    : dt(dt), var_x(var_x), var_v(var_v), cov_xv(cov_xv), u(u) {
+KalmanFilter::KalmanFilter(double dt, double x0, double v0, double var_x, double var_v, double cov_xv, Vector2d& u) 
+    : dt(dt), x0(x0), v0(v0), var_x(var_x), var_v(var_v), cov_xv(cov_xv), u(u) {
     
     // Initialize state vector
-    x << 0, 0; // zero position, zero velocity
+    x << x0, v0; // initial position, initial velocity
     
     // Initialize system matrices
     A << 1, dt,
@@ -19,7 +19,7 @@ KalmanFilter::KalmanFilter(double dt, double var_x, double var_v, double cov_xv,
          0, dt;
     
     H << 1, 0,
-         0, 1;
+         0, 0;
     
     // Initialize covariance matrices
     P << var_x, cov_xv,
@@ -27,7 +27,7 @@ KalmanFilter::KalmanFilter(double dt, double var_x, double var_v, double cov_xv,
     
     // Process noise covariance matrix
     Q << 0, 0,
-        0, 0;
+         0, 0;
     
     // Measurement noise covariance matrix
     R << 0.1, 0,

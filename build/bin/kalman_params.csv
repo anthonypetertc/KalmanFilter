@@ -1,8 +1,9 @@
 name,value
 dt,0.1
-t_final,15
+t_final,25
 a,-0.981
-v_i,10
-var_x,0.1
-var_v,0.1
-cov_xv,0.1
+x0,0
+v0,50
+var_x,0.01
+var_v,0.01
+cov_xv,0.01

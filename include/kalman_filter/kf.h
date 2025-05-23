@@ -9,8 +9,10 @@ class KalmanFilter {
 
     public:
         // constructor
-        KalmanFilter(double dt, double var_x, double var_v, double cov_xv, Vector2d& u);
+        KalmanFilter(double dt, double x0, double v0, double var_x, double var_v, double cov_xv, Vector2d& u);
 
+        // not sure if these can be private or public
+        double x0, v0; // initial position and velocity
         // predict, Kalman gain and update methods
         Vector2d predict();
         Matrix2d kalmanGain();

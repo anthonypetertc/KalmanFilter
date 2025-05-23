@@ -7,15 +7,17 @@ class kf():
     
     """kalman filter class """
 
-    def __init__(self, dt, var_x, var_v, cov_xv, u):
+    def __init__(self, dt, x0, v0, var_x, var_v, cov_xv, u):
 
         self.dt = dt # time step for each loop iteration
+        self.x0 = x0 # time step for each loop iteration
+        self.v0 = v0 # time step for each loop iteration
         self.var_x = var_x # variance of position
         self.var_v = var_v # variance of velocity
         self.cov_xv = cov_xv # covariance of position and velocity
         
         # initial state
-        self.x = np.array([[0], [0]])
+        self.x = np.array([[x0], [v0]])
 
         # initial covariance matrix
         self.P = np.array([[var_x, cov_xv], [cov_xv, var_v]]) 
