@@ -7,12 +7,9 @@
 #include <kalman_filter/kalman_step.hpp>
 
 class KalmanFilter {
-  // TODO(Tony): Need to implement usage of dx, dy ,du.
-  // int dx;       // size of the state vector.
-  // int dy;       // size of the measurement vector.
-  // int du;      // size of the control vector.
-  // dependent (measured)
-  //  variables.
+  const int dx;  // size of the state vector.
+  const int dy;  // size of the measurement vector.
+  const int du;  // size of the control vector.
 
   Eigen::VectorXd
       estimate;        // current estimate of the parameters. Vector of size dx.
