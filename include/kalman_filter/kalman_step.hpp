@@ -6,10 +6,9 @@
 #include <iostream>
 
 class KalmanStep {
-  // TODO(Tony): Need to implement usage of parameters.
-  // int dx;       // size of the vector representing the state.
-  // int dy;       // size of the vector representing the measurement.
-  // int du;  // size of the control vector.
+  const int dx;  // size of the vector representing the state.
+  const int dy;  // size of the vector representing the measurement.
+  const int du;  // size of the control vector.
 
   Eigen::VectorXd y;  // measurement outcome.
   Eigen::VectorXd u;  // control vector.

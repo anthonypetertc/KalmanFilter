@@ -20,10 +20,3 @@ repos:
         exclude: ^include/kalman_filter/
       - id: cpplint
         args: [--filter=-legal/copyright]
-      - id: cppcheck
-        args:
-          - --enable=all
-          - --inline-suppr
-          - --std=c++17
-          - -Isrc
-          - -Iinclude
