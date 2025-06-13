@@ -7,59 +7,56 @@
 #include <kalman_filter/kalman_step.hpp>
 
 class KalmanFilter {
-  // TODO(Tony): Need to implement usage of dparams, dx, dy.
-  // int dparams;  // size of the vector of parameters being estimated.
-  // int dx;       // size of the vector representing the independent
-  // int dy;       // size of the vector representing the
+  // TODO(Tony): Need to implement usage of dx, dy ,du.
+  // int dx;       // size of the state vector.
+  // int dy;       // size of the measurement vector.
+  // int du;      // size of the control vector.
   // dependent (measured)
   //  variables.
 
   Eigen::VectorXd
-      estimate;  // current estimate of the parameters. Vector of size dparams.
-  Eigen::MatrixXd P;  // current uncertainty of estimate, represented by a
-                      // covariance matrix of size (dparams x dparams).
-  Eigen::MatrixXd K;  // current Kalman Gain, a matrix of size (dparams x dy).
+      estimate;        // current estimate of the parameters. Vector of size dx.
+  Eigen::MatrixXd P;   // current uncertainty of estimate, represented by a
+                       // covariance matrix of size (dx x dx).
+  Eigen::MatrixXd Kg;  // current Kalman Gain, a matrix of size (dx x dy).
 
  public:
   // constructor: initialises the KalmanFilter object with an initial guess at
   // the parameters, and a covariance matrix representing the uncertainty around
   // that guess.
   KalmanFilter(const Eigen::VectorXd& init_estimate,
-               const Eigen::MatrixXd& init_P, double dx, double dy,
-               double dparams);
-
-  // predict
-  Eigen::VectorXd predict();  // TODO(tony): what does this do?
+               const Eigen::MatrixXd& init_P, const int du, const int dy);
 
   // update the object with a new measurement.
-  void update(KalmanStep KS, const Eigen::MatrixXd& H,
-              const Eigen::MatrixXd& L);
+  void update(KalmanStep next_step);
 
   // get attributes
   Eigen::VectorXd getEstimate() const;
   Eigen::VectorXd getP() const;
-  Eigen::MatrixXd getK() const;
-  double getdx() const;
-  double getdy() const;
-  double getdparams() const;
+  Eigen::MatrixXd getKg() const;
+  int getdx() const;
+  int getdy() const;
+  int getdparams() const;
 
  private:
-  // private method to obtain P_n|n-1.
-  void initial_update_covariance(KalmanStep KS, const Eigen::MatrixXd& L);
+  // private method to verify next_step is compatible with this
+  // Kalman filter.
+  void verify_step(KalmanStep next_step);
 
-  // private method to obtain alpha_n|n-1
-  // TODO(Tony): Best way to incorporate the dynamics?
-  void initial_update_estimate(KalmanStep KS);
+  // private method to predict the state.S
+  void predict_state(const Eigen::MatrixXd& A, const Eigen::MatrixXd& B,
+                     const Eigen::VectorXd& u);
 
-  // private method to compute Kalman Gain.
-  void compute_kalman_gain(KalmanStep KS, const Eigen::MatrixXd& H);
+  void predict_P(const Eigen::MatrixXd& A, const Eigen::MatrixXd& Q);
 
-  // private method to to obtain P_n|n.
-  void update_covariance(const Eigen::MatrixXd& H);
+  // private method to update Kalman Gain.
+  void update_kalman_gain(const Eigen::MatrixXd& H, const Eigen::MatrixXd& R);
 
-  // private method to compute estimate
-  // TODO(Tony): Best way to incorporate the dynamics?
-  void update_estimate(KalmanStep KS);
+  // private method to update estimate.
+  void update_estimate(const Eigen::MatrixXd& H, const Eigen::VectorXd& y);
+
+  // private method to update the uncertainty.
+  void update_P(const Eigen::MatrixXd& H);
 };
 
 #endif  // INCLUDE_KALMAN_FILTER_KALMAN_FILTER_HPP_

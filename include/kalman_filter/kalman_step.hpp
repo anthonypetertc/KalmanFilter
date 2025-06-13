@@ -34,9 +34,9 @@ class KalmanStep {
   Eigen::MatrixXd getR() const;
   Eigen::MatrixXd getQ() const;
   Eigen::MatrixXd getH() const;
-  double getdx() const;
-  double getdy() const;
-  double getdparams() const;
+  int getdx() const;
+  int getdy() const;
+  int getdu() const;
 };
 
 #endif  // INCLUDE_KALMAN_FILTER_KALMAN_STEP_HPP_
