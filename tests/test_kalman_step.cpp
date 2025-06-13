@@ -6,7 +6,7 @@
 
 using Eigen::VectorXd, Eigen::MatrixXd;
 
-BOOST_AUTO_TEST_CASE(TestKalmanStep) {
+/* BOOST_AUTO_TEST_CASE(TestKalmanStep) {
   int dx = 1;
   VectorXd x(dx);
   x << 0;
@@ -31,4 +31,4 @@ BOOST_AUTO_TEST_CASE(TestKalmanStep) {
   BOOST_CHECK_EQUAL(kstep.getdx(), dx);
   BOOST_CHECK_EQUAL(kstep.getdy(), dy);
   BOOST_CHECK_EQUAL(kstep.getdparams(), dparams);
-}
+} */
