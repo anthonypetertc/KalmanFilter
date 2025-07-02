@@ -1,20 +1,21 @@
-#!/bin/bash
-
+#!/usr/bin/bash
 set -e  # Exit if any command fails
 
 echo "Cleaning build directory..."
 rm -rf build
 
+#Pull vcpkg if doesn't already exist.
+if [ ! -d "./vcpkg" ]; then
+  git clone https://github.com/microsoft/vcpkg.git
+  ./vcpkg/bootstrap-vcpkg.sh
+fi
+
 echo "Creating build directory..."
-mkdir build
-cd build
+cmake -S . -B build \
+      -DCMAKE_TOOLCHAIN_FILE="$PWD/vcpkg/scripts/buildsystems/vcpkg.cmake" \
+      -DVCPKG_TARGET_TRIPLET=x64-linux      # adjust triplet as needed
 
-echo "Running CMake..."
-cmake ..
-
-echo "Compiling..."
-make
+# 4. Build
+cmake --build build --parallel
 
 echo "✅ Build complete."
-
-cd ..

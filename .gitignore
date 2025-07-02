@@ -37,5 +37,8 @@ local/
 #build files
 build/
 
+#vcpkg
+vcpkg/
+
 #vs code
 .vscode
