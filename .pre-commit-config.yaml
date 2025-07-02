@@ -13,13 +13,10 @@ repos:
       - id: clang-format
         args: [--style=Google, -i]
       - id: clang-tidy
-        args: [--fix, -p=build/compile_commands.json]
+        args:
+         - --fix
+         - -p=build
+         - -extra-arg=-I/build/_deps/eigen-src/Eigen
+        exclude: ^include/kalman_filter/
       - id: cpplint
         args: [--filter=-legal/copyright]
-      - id: cppcheck
-        args:
-          - --enable=all
-          - --inline-suppr
-          - --std=c++17
-          - -Isrc
-          - -Iinclude

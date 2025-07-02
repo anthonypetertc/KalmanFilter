@@ -15,12 +15,11 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(Eigen)
 
-# --- Include directories ---
-include_directories(include)
-
-
 # --- Export compile commands ---
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# --- Include directories ---
+include_directories(include)
 
 # --- Subdirectories ---
 add_subdirectory(src)
