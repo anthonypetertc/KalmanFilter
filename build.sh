@@ -1,20 +1,21 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -e  # exit on first error
 
-set -e  # Exit if any command fails
-
-echo "Cleaning build directory..."
+# 1. Clean previous build artifacts
 rm -rf build
 
-echo "Creating build directory..."
-mkdir build
-cd build
+# 2. Bootstrap vcpkg once per clone
+if [ ! -d "./vcpkg" ]; then
+  git clone https://github.com/microsoft/vcpkg.git
+  ./vcpkg/bootstrap-vcpkg.sh
+fi
 
-echo "Running CMake..."
-cmake ..
+# 3. Configure (this creates build/ automatically)
+cmake -S . -B build \
+      -DCMAKE_TOOLCHAIN_FILE="$PWD/vcpkg/scripts/buildsystems/vcpkg.cmake" \
+      -DVCPKG_TARGET_TRIPLET=x64-linux      # adjust triplet as needed
 
-echo "Compiling..."
-make
+# 4. Build
+cmake --build build --parallel
 
 echo "✅ Build complete."
-
-cd ..
