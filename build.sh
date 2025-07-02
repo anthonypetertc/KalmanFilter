@@ -1,16 +1,16 @@
-#!/usr/bin/env bash
-set -e  # exit on first error
+#!/usr/bin/bash
+set -e  # Exit if any command fails
 
-# 1. Clean previous build artifacts
+echo "Cleaning build directory..."
 rm -rf build
 
-# 2. Bootstrap vcpkg once per clone
+#Pull vcpkg if doesn't already exist.
 if [ ! -d "./vcpkg" ]; then
   git clone https://github.com/microsoft/vcpkg.git
   ./vcpkg/bootstrap-vcpkg.sh
 fi
 
-# 3. Configure (this creates build/ automatically)
+echo "Creating build directory..."
 cmake -S . -B build \
       -DCMAKE_TOOLCHAIN_FILE="$PWD/vcpkg/scripts/buildsystems/vcpkg.cmake" \
       -DVCPKG_TARGET_TRIPLET=x64-linux      # adjust triplet as needed
