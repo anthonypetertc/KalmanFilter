@@ -29,11 +29,11 @@ class KalmanFilter {
 
   // get attributes
   Eigen::VectorXd getEstimate() const;
-  Eigen::VectorXd getP() const;
+  Eigen::MatrixXd getP() const;
   Eigen::MatrixXd getKg() const;
   int getdx() const;
   int getdy() const;
-  int getdparams() const;
+  int getdu() const;
 
  private:
   // private method to verify next_step is compatible with this
