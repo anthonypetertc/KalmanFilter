@@ -12,6 +12,8 @@ fi
 
 echo "Creating build directory..."
 cmake -S . -B build \
+      -DCMAKE_BUILD_TYPE=Debug \
+      -DCMAKE_CXX_FLAGS="-g3 -O0 -fno-omit-frame-pointer -fno-inline" \
       -DCMAKE_TOOLCHAIN_FILE="$PWD/vcpkg/scripts/buildsystems/vcpkg.cmake" \
       -DVCPKG_TARGET_TRIPLET=x64-linux      # adjust triplet as needed
 

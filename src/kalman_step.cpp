@@ -31,8 +31,8 @@ int KalmanStep::getdu() const { return du; }
 
 Eigen::VectorXd KalmanStep::gety() const { return y; }
 Eigen::VectorXd KalmanStep::getu() const { return u; }
-Eigen::VectorXd KalmanStep::getA() const { return A; }
-Eigen::VectorXd KalmanStep::getB() const { return B; }
+Eigen::MatrixXd KalmanStep::getA() const { return A; }
+Eigen::MatrixXd KalmanStep::getB() const { return B; }
 Eigen::MatrixXd KalmanStep::getR() const { return R; }
 Eigen::MatrixXd KalmanStep::getQ() const { return Q; }
 Eigen::MatrixXd KalmanStep::getH() const { return H; }
