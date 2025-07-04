@@ -52,3 +52,45 @@ BOOST_AUTO_TEST_CASE(TestVerifyStep) {
 
   BOOST_CHECK_THROW(kfilter.update(step), std::invalid_argument);
 }
+
+BOOST_AUTO_TEST_CASE(TestUpdate) {
+  Eigen::VectorXd init_estimate(1);
+  init_estimate << 0.1;
+
+  Eigen::MatrixXd init_P(1, 1);
+  init_P << 1;
+
+  int du = 1;
+  int dy = 1;
+
+  KalmanFilter kalmanfilter(init_estimate, init_P, du, dy);
+
+  Eigen::VectorXd y(1);
+  y << -0.1;
+
+  Eigen::VectorXd u(1);
+  u << 0;
+
+  Eigen::MatrixXd A(1, 1);
+  A << 1;
+
+  Eigen::MatrixXd B(1, 1);
+  B << 0;
+
+  Eigen::MatrixXd R(1, 1);
+  R << 1;
+
+  Eigen::MatrixXd Q(1, 1);
+  Q << 0;
+
+  Eigen::MatrixXd H(1, 1);
+  H << 1;
+
+  KalmanStep next_step(y, u, A, B, R, Q, H);
+
+  kalmanfilter.update(next_step);
+
+  BOOST_CHECK_CLOSE(kalmanfilter.getKg()(0, 0), 0.5, 1e-6);
+  BOOST_CHECK_CLOSE(kalmanfilter.getP()(0, 0), 0.5, 1e-6);
+  BOOST_CHECK_SMALL(kalmanfilter.getEstimate()(0), 1e-6);
+}
