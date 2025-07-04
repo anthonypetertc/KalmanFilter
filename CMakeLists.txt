@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.21)
 
 if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
   set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_LIST_DIR}/../vcpkg/scripts/buildsystems/vcpkg.cmake"
@@ -10,16 +10,8 @@ project(KalmanFilter)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-# --- Fetch Eigen ---
-include(FetchContent)
 
-FetchContent_Declare(
-  Eigen
-  GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
-  GIT_TAG 3.4.0
-)
-
-FetchContent_MakeAvailable(Eigen)
+find_package(Eigen3 CONFIG REQUIRED)
 
 # --- Export compile commands ---
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
