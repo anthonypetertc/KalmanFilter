@@ -25,20 +25,20 @@ class KalmanFilter {
                const Eigen::MatrixXd& init_P, const int du, const int dy);
 
   // update the object with a new measurement.
-  void update(KalmanStep next_step);
+  void update(const KalmanStep& next_step);
 
   // get attributes
   Eigen::VectorXd getEstimate() const;
-  Eigen::VectorXd getP() const;
+  Eigen::MatrixXd getP() const;
   Eigen::MatrixXd getKg() const;
   int getdx() const;
   int getdy() const;
-  int getdparams() const;
+  int getdu() const;
 
  private:
   // private method to verify next_step is compatible with this
   // Kalman filter.
-  void verify_step(KalmanStep next_step);
+  void verify_step(const KalmanStep& next_step);
 
   // private method to predict the state.S
   void predict_state(const Eigen::MatrixXd& A, const Eigen::MatrixXd& B,

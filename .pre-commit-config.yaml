@@ -19,4 +19,5 @@ repos:
          - -extra-arg=-I/build/_deps/eigen-src/Eigen
         exclude: ^include/kalman_filter/
       - id: cpplint
-        args: [--filter=-legal/copyright]
+        args:
+        - "--filter=-legal/copyright, -build/include_order"

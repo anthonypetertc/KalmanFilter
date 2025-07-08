@@ -12,8 +12,8 @@ class KalmanStep {
 
   Eigen::VectorXd y;  // measurement outcome.
   Eigen::VectorXd u;  // control vector.
-  Eigen::VectorXd A;  // Linearized dynamics (dependence on previous state).
-  Eigen::VectorXd B;  // Linearized dynamics (dependence on control vector).
+  Eigen::MatrixXd A;  // Linearized dynamics (dependence on previous state).
+  Eigen::MatrixXd B;  // Linearized dynamics (dependence on control vector).
   Eigen::MatrixXd R;  // Measurement noise, should be of size (dy x dy)
   Eigen::MatrixXd Q;  // System noise, should be of size (dx x dx)
   Eigen::MatrixXd H;  // Relates the measurement to the state (dy x dx)
@@ -28,8 +28,8 @@ class KalmanStep {
   // get attributes
   Eigen::VectorXd gety() const;
   Eigen::VectorXd getu() const;
-  Eigen::VectorXd getA() const;
-  Eigen::VectorXd getB() const;
+  Eigen::MatrixXd getA() const;
+  Eigen::MatrixXd getB() const;
   Eigen::MatrixXd getR() const;
   Eigen::MatrixXd getQ() const;
   Eigen::MatrixXd getH() const;
