@@ -140,3 +140,37 @@ BOOST_AUTO_TEST_CASE(TestKGDecreasesWithNoise) {
 
   BOOST_TEST(kgs[0] > kgs[1]);
 }
+
+BOOST_AUTO_TEST_CASE(TestConvergesOnPerfectMeasurements) {
+  double dt = 0.1;
+  Eigen::MatrixXd A(2, 2);
+  A << 1., dt, 0., 1.;
+  Eigen::MatrixXd B = MatrixXd::Zero(2, 0);
+  Eigen::MatrixXd H(1, 2);
+  H << 1, 0;
+
+  Eigen::MatrixXd Q = MatrixXd::Zero(2, 2);
+  Eigen::MatrixXd R = 1e-6 * MatrixXd::Identity(1, 1);
+
+  VectorXd u = VectorXd::Zero(0);
+  VectorXd y = VectorXd(1);
+  y << 10.;
+
+  Eigen::VectorXd init_estimate(2);
+  init_estimate << 0, 1;
+
+  Eigen::MatrixXd init_P = 100 * MatrixXd::Identity(2, 2);
+
+  int du = 0;
+  int dy = 1;
+
+  KalmanFilter kalmanfilter(init_estimate, init_P, du, dy);
+
+  for (int i = 0; i < 5; i++) {
+    KalmanStep kstep(y, u, A, B, R, Q, H);
+    kalmanfilter.update(kstep);
+  }
+
+  BOOST_CHECK_SMALL(kalmanfilter.getEstimate()(0, 0) - 10, 1e-7);
+  BOOST_TEST(kalmanfilter.getP()(0, 0) < 1e-6);
+}
