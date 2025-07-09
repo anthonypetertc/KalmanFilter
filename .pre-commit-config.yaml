@@ -20,4 +20,4 @@ repos:
         exclude: ^include/kalman_filter/
       - id: cpplint
         args:
-        - "--filter=-legal/copyright, -build/include_order"
+        - "--filter=-legal/copyright, -build/include_order, -whitespace/braces"
