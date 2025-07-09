@@ -12,6 +12,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 
 find_package(Eigen3 CONFIG REQUIRED)
+find_package(Matplot++ CONFIG REQUIRED)
 
 # --- Export compile commands ---
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -22,3 +23,4 @@ include_directories(include)
 # --- Subdirectories ---
 add_subdirectory(src)
 add_subdirectory(tests)
+add_subdirectory(examples)
