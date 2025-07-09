@@ -3,6 +3,8 @@ A Kalman Filter is an object used for statistical analysis of dynamical systems.
 
 This repository contains an implementation of a simple Kalman filter, in C++.
 
+![alt text](example_figure.pdf)
+
 ## Build
 To build the project run:
 
